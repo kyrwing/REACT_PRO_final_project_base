@@ -5,9 +5,13 @@ import { Header } from '../widgets/Header';
 import { Sort } from '../shared/ui/Sort';
 import { Footer } from '../widgets/Footer';
 import { ToastContainer } from 'react-toastify';
+import { Modal } from '../shared/ui/Modal';
+import { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
+	const [isOpen, setIsOpen] = useState(false);
+
 	return (
 		<>
 			<Header />
@@ -20,6 +24,8 @@ export const App = () => {
 				pauseOnHover
 				theme='colored'
 			/>
+			<button onClick={() => setIsOpen(true)}>Открыть</button>
+			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>mffmfmemf</Modal>
 			<Footer />
 		</>
 	);
