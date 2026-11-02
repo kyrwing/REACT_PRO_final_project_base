@@ -25,7 +25,7 @@ export const App = () => {
 				theme='colored'
 			/>
 			<button onClick={() => setIsOpen(true)}>Открыть</button>
-			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>mffmfmemf</Modal>
+			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>text</Modal>
 			<Footer />
 		</>
 	);
