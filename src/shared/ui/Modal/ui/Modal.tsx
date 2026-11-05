@@ -11,9 +11,14 @@ type TModal = {
 
 export const Modal = ({ isOpen, onClose, children }: TModal) => {
 	const buttonClose = useRef<HTMLButtonElement>(null);
+	const refCount = useRef(0);
+	const refFocusElement = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
 		if (!isOpen) return;
+		refFocusElement.current = document.activeElement as HTMLElement;
+		refCount.current += 1;
+		console.log(`Открыта ${refCount.current} раз`);
 
 		const handler = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
@@ -25,6 +30,7 @@ export const Modal = ({ isOpen, onClose, children }: TModal) => {
 
 		return () => {
 			document.removeEventListener('keydown', handler);
+			refFocusElement.current?.focus();
 		};
 	}, [isOpen, onClose]);
 
