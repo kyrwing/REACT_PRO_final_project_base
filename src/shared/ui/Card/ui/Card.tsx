@@ -2,20 +2,14 @@ import classNames from 'classnames';
 import s from './Card.module.css';
 import { Price } from './Price/ui/Price';
 import { Link } from 'react-router-dom';
-import { LikeButton } from '../../LikeButton';
-import { useAppSelector } from '../../../store/utils';
-import { cartSelectors } from '../../../store/slices/cart';
-import { useAddToCart } from '../../../hooks/useAddToCart';
-import { CartCounter } from '../../CartCounter';
 
 type CardProps = {
 	product: Product;
+	likeButton: React.ReactNode;
+	cartControl: React.ReactNode;
 };
-export const Card = ({ product }: CardProps) => {
+export const Card = ({ product, likeButton, cartControl }: CardProps) => {
 	const { discount, price, name, tags, id, images } = product;
-	const cartProducts = useAppSelector(cartSelectors.getCartProducts);
-	const isProductInCart = cartProducts.some((p) => p.id === id);
-	const { addProductToCart } = useAddToCart();
 
 	return (
 		<article className={s['card']}>
@@ -37,7 +31,7 @@ export const Card = ({ product }: CardProps) => {
 					s['card__sticky'],
 					s['card__sticky_type_top-right']
 				)}>
-				<LikeButton product={product} />
+				{likeButton}
 			</div>
 			<Link className={s['card__link']} to={`/products/${id}`}>
 				<img
@@ -51,20 +45,7 @@ export const Card = ({ product }: CardProps) => {
 					<h3 className={s['card__name']}>{name}</h3>
 				</div>
 			</Link>
-			{isProductInCart ? (
-				<CartCounter productId={id} />
-			) : (
-				<button
-					onClick={() => addProductToCart({ ...product, count: 1 })}
-					disabled={isProductInCart}
-					className={classNames(
-						s['card__cart'],
-						s['card__btn'],
-						s['card__btn_type_primary']
-					)}>
-					В корзину
-				</button>
-			)}
+			{cartControl}
 		</article>
 	);
 };

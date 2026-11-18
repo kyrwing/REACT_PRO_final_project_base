@@ -1,8 +1,17 @@
 import { ChangeEvent } from 'react';
-import { useSort } from '../hooks/useSort';
 
-export const Sort = () => {
-	const { sort, setSort, sortParams } = useSort();
+interface SortParam {
+	title: string;
+	value: Sort;
+	href: string;
+}
+
+interface SortProps {
+	sort: Sort;
+	setSort: (newSort: Sort) => void;
+	sortParams: SortParam[];
+}
+export const Sort = ({ sort, setSort, sortParams }: SortProps) => {
 	const handleSortSelect = (e: ChangeEvent<HTMLSelectElement>) => {
 		const newSort = e.target.value as Sort;
 		setSort(newSort);

@@ -1,14 +1,20 @@
 import { Alert, CircularProgress, Stack } from '@mui/material';
-import { useRef } from 'react';
-import { useLoadMore } from '../hooks/useLoadMore';
+import { RefObject } from 'react';
 
-export const LoadMore = () => {
-	const ref = useRef<HTMLDivElement>(null);
-	const { isEndOfList, isFetching } = useLoadMore({ ref });
+interface LoadMoreProps {
+	isEndOfList: boolean;
+	isFetching: boolean;
+	containerRef: RefObject<HTMLDivElement | null>;
+}
 
+export const LoadMore = ({
+	isEndOfList,
+	isFetching,
+	containerRef,
+}: LoadMoreProps) => {
 	return (
 		<Stack
-			ref={ref}
+			ref={containerRef}
 			direction='row'
 			justifyContent='center'
 			alignItems='center'

@@ -6,9 +6,9 @@ import { NotFoundPage } from '../../../../pages/NotFoundPage';
 import { ProfilePage } from '../../../../pages/ProfilePage';
 import { FavoritesPage } from '../../../../pages/FavoritesPage';
 import { App } from '../../../../app';
-import { SignUpPage } from '../../../../pages/SignUpPage';
 import { SignInPage } from '../../../../pages/SignInPage';
 import { CartPage } from '../../../../pages/CartPage';
+import { SignUpPage } from '../../../../pages/SignUpPage/ui/SignUpPage';
 
 export enum AppRoutes {
 	HOME = 'home',
